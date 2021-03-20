@@ -93,9 +93,9 @@ export class PotholesPage implements OnInit {
 
   submit(action) : void {
     if(action == "approved"){
-          
+          alert( "supplier successfuly selected");
     }else if(action == "declined"){
-
+      alert( "message sent to ");
     }
   }
 }

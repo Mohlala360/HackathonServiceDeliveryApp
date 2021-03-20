@@ -146,7 +146,7 @@
           <ion-label> supplier account :</ion-label>
           <ion-label> {{selectedSupplier.account}}</ion-label>
         </ion-item>
-      <ion-button class="full" (click)="submit(approved)">submit</ion-button>
+      <ion-button class="full" [routerLink]="['/Payment']">submit</ion-button>
     </ion-card>
   </ion-card>
 </ion-content>
