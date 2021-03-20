@@ -1,9 +1,15 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar class="headr">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>{{ folder }}</ion-title>
+  </ion-toolbar>
+  <ion-toolbar class="headr text">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title><a [routerLink]="['/Login']">Login</a></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,8 +20,79 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-card>
+    <ion-card *ngIf="!islooaded">
+      <ion-item class="half">
+        <ion-label position="floating">Full names :</ion-label>
+        <ion-input [(ngModel)]="portHole.fullnames" name="fullName" id="fullNameId"></ion-input>
+      </ion-item>
+      <ion-item class="half">
+        <ion-label position="floating">Cell number :</ion-label>
+        <ion-input [(ngModel)]="portHole.cellnumber" name="cellNumber" id="cellNumberId"></ion-input>
+      </ion-item>
+      <ion-item class="full">
+        <ion-label>Select issue</ion-label>
+        <ion-select [(ngModel)]="portHole.issueType" name="issueName" id="issueNameId" placeholder="Select One">
+          <ion-select-option value="PortHoles">PortHoles</ion-select-option>
+          <ion-select-option value="PortHoles">Street Lights</ion-select-option>
+          <ion-select-option value="PortHoles">Robots</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="half">
+        <ion-label>Location:</ion-label>
+      </ion-item>
+      <ion-item class="half">
+        <ion-label>Photo :</ion-label>
+      </ion-item>
+      <ion-item class="half">
+        <iframe id="inlineFrameExample" title="Inline Frame Example" width="300" height="200"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
+        </iframe>
+      </ion-item>
+      <ion-item class="half">
+        <input type='file' (change)="onFileChanged($event)" />
+        <img src={{url}} style="height: 250px;">
+      </ion-item>
+
+      <ion-button class="full" (click)="submit()">submit</ion-button>
+    </ion-card>
+    <ion-card *ngIf="islooaded">
+      <ion-iteam style="background-color: chartreuse;text-align: center;">
+        <ion-label position="floating">
+          <h1>You have loaded successfuly </h1>
+        </ion-label>
+      </ion-iteam>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>
+              <br />
+              <strong>Name :</strong> {{portHole.fullnames}} <br />
+              <strong>Cell :</strong> {{portHole.cellnumber}} <br />
+              <strong>Complaint :</strong> {{portHole.issueType}} <br />
+              <br />
+            </div>
+          </ion-col>
+          <ion-col *ngIf="portHole.picture !== null">
+            <div>
+              <img src={{url}} style="height: 90px; width: 90px;">
+            </div>
+          </ion-col>
+        </ion-row>
+        <!-- <ion-row>
+          <ion-col>
+            <div>
+              {{portHole.issueType}}
+              {{portHole.cellnumber}}
+            </div>
+          </ion-col>
+          <ion-col>
+            <div>
+              {{portHole.cellnumber}}
+            </div>
+          </ion-col>
+        </ion-row> -->
+      </ion-grid>
+    </ion-card>
+  </ion-card>
 </ion-content>
