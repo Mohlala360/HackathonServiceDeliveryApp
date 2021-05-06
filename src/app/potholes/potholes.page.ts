@@ -10,11 +10,16 @@ import { PotholeService } from '../pothole.service';
 })
 export class PotholesPage implements OnInit {
   potholes: PortHole[];
+  pothole: any;
   approved: boolean;
   declined: boolean;
   suppliers: any[];
   selectedSupplier: any;
-  constructor(public alertController: AlertController, private potholeService: PotholeService) { }
+  mustNotSubmit: boolean;
+
+  constructor(public alertController: AlertController, private potholeService: PotholeService) {
+    this.mustNotSubmit = false;
+  }
 
   ngOnInit() {
     this.potholes = this.potholeService.getPotholes();
@@ -23,15 +28,15 @@ export class PotholesPage implements OnInit {
     this.declined = false;
     this.suppliers = [{
       name: 'Gamakgara',
-      location: 'Pretoria, Gauteng',
+      location: { province: 'Gauteng', city: 'city of tshwane' },
       account: '12312321231',
     }, {
       name: 'Fix it ',
-      location: 'Emalahleni, Mpumalanga',
+      location: { province: 'Limpopo', city: 'capricon dristrict' },
       account: '12775456755231',
     }, {
       name: 'DrJs',
-      location: 'Pretoria, Gauteng',
+      location: { province: 'Mpumalanga', city: 'nkangala district' },
       account: '10919734642',
     }
     ];
@@ -44,7 +49,7 @@ export class PotholesPage implements OnInit {
   }
 
   async presentAlertPrompt(event) {
-
+    this.pothole = event;
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Action!',
@@ -58,7 +63,15 @@ export class PotholesPage implements OnInit {
           type: 'text',
         },
         {
-          value: `location : ${event.location}`,
+          value: `province : ${event.location.province}`,
+          type: 'text',
+        },
+        {
+          value: `city : ${event.location.city}`,
+          type: 'text',
+        },
+        {
+          value: `manucipality : ${event.location.manucipality}`,
           type: 'text',
         }
       ],
@@ -87,15 +100,22 @@ export class PotholesPage implements OnInit {
     await alert.present();
   }
 
-  onChange() : void {
-    console.log(this.selectedSupplier);
+  onChange(): void {
+    this.mustNotSubmit = false;
+    if (this.pothole.location.province !== this.selectedSupplier.location.province) {
+      this.mustNotSubmit = true;
+      alert("supplier out of the issue province");
+      return;
+    }
   }
 
-  submit(action) : void {
-    if(action == "approved"){
-          alert( "supplier successfuly selected");
-    }else if(action == "declined"){
-      alert( "message sent to ");
+  submit(action): void {
+    if (action == "approved") {
+      alert("supplier successfuly selected");
+    } else if (action == "declined") {
+      alert("message sent to ");
     }
   }
 }
+
+

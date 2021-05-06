@@ -18,11 +18,7 @@ const routes: Routes = [
   {
     path: 'Potholes',
     loadChildren: () => import('./potholes/potholes.module').then( m => m.PotholesPageModule)
-  },
-  {
-    path: 'map',
-    loadChildren: () => import('./map/map.module').then( m => m.MapPageModule)
-  },
+  }, 
   {
     path: 'Payment',
     loadChildren: () => import('./payment/payment.module').then( m => m.PaymentPageModule)

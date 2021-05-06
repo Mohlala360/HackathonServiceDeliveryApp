@@ -78,7 +78,7 @@ export class FolderPage implements OnInit {
     this.portHole.date = ` ${today.getDay()}/ ${today.getMonth()} / ${today.getFullYear()}`;
     this.portHole.refNumber = 'ref' + Date.now();
     this.pothHoleService.addPothHole(this.portHole);
-    this.islooaded = true;
+    this.islooaded = true;    
   }
 
   onFileChanged(event) {
@@ -114,8 +114,6 @@ export class FolderPage implements OnInit {
     console.log('this is the selected province', event);
     const provinceId = event.detail.value;
     this.loadProvinceCities(provinceId);
-    //this.portHole.location.province = this.provs.filter(prov => prov.id == provinceId)[0]?.name;
-    console.log(document.getElementById('provinceNameId'));
   }
 
   loadProvinceCities(provinceId: number): void {
@@ -147,17 +145,17 @@ export class FolderPage implements OnInit {
     const cityManucipalityId = event.detail.value;
   }
 
-  getProvinceNamebyId(provinceId: number): string {
+  getProvinceNamebyId(provinceId: any): string {
     return this.portHole.location.province =
-      this.provinces.filter(province => province.id == provinceId)[0].name;
+      this.provs.filter(province => province.id == provinceId)[0].name;
   }
 
-  getManucipalityNamebyId(manucipalityId: number): string {
+  getManucipalityNamebyId(manucipalityId: any): string {
     return this.portHole.location.manucipality =
       this.manucipalities.filter(manucipality => manucipality.id == manucipalityId)[0].name;
   }
 
-  getCityNamebyId(cityId: number): string {
+  getCityNamebyId(cityId: any): string {
     return this.portHole.location.city =
       this.cities.filter(city => city.id == cityId)[0].name;
   }

@@ -126,13 +126,13 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-  <ion-card >
+  <ion-card>
     <ion-card *ngIf="declined">
       <ion-item>
         <ion-label position="floating">Decline reason</ion-label>
         <ion-textarea></ion-textarea>
       </ion-item>
-      <ion-button *ngIf="declined" class= "full" color="danger" (click)="submit(declined)">submit
+      <ion-button *ngIf="declined" class="full" color="danger" (click)="submit(declined)">submit
       </ion-button>
     </ion-card>
     <ion-card *ngIf="approved">
@@ -144,15 +144,15 @@
           </ion-select-option>
         </ion-select>
       </ion-item>
-        <ion-item class="half">
-          <ion-label> supplier location : </ion-label>
-          <ion-label> {{selectedSupplier.location}}</ion-label>
-        </ion-item>
-        <ion-item class="half">
-          <ion-label> supplier account :</ion-label>
-          <ion-label> {{selectedSupplier.account}}</ion-label>
-        </ion-item>
-      <ion-button class="full" [routerLink]="['/Payment']">submit</ion-button>
+      <ion-item class="half">
+        <ion-label> supplier location : </ion-label>
+        <ion-label> {{selectedSupplier.location.province}} {{selectedSupplier.location.city}} </ion-label>
+      </ion-item>
+      <ion-item class="half">
+        <ion-label> supplier account :</ion-label>
+        <ion-label> {{selectedSupplier.account}}</ion-label>
+      </ion-item>
+      <ion-button *ngIf="!mustNotSubmit" class="full" [routerLink]="['/Payment']">submit</ion-button>
     </ion-card>
   </ion-card>
 </ion-content>

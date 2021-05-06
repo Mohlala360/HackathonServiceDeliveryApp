@@ -75,10 +75,10 @@
           <ion-select-option value="Provencial">Provencial road</ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-item class="full blockHeading">
+      <ion-item *ngIf="cityManucipalities.length !== 0" class="full blockHeading">
         <ion-label>Photo :</ion-label>
       </ion-item>
-      <ion-item class="half blockHeading">
+      <ion-item *ngIf="cityManucipalities.length !== 0" class="half blockHeading">
         <input type='file' (change)="onFileChanged($event)" />
         <img src={{url}} style="height: 250px;">
       </ion-item>
@@ -86,11 +86,11 @@
       <ion-button class="full" (click)="submit()">submit</ion-button>
     </ion-card>
     <ion-card *ngIf="islooaded">
-      <ion-iteam style="background-color: chartreuse;text-align: center;">
+      <ion-item style="background-color: chartreuse;text-align: center;">
         <ion-label position="floating">
           <h1>You have loaded successfuly </h1>
         </ion-label>
-      </ion-iteam>
+      </ion-item>
       <ion-grid>
         <ion-row>
           <ion-col>
