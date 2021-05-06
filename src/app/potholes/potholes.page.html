@@ -5,39 +5,6 @@
 </ion-header>
 
 <ion-content>
-  <!-- <ion-card> 
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <div>
-            {{portHole.fullnames}}
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            {{portHole.cellnumber}}
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <div>
-            {{portHole.issueType}}
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            {{portHole.fullnames}}
-          </div>
-        </ion-col>
-        <ion-col *ngIf="portHole.picture !== null">
-          <div>
-            <img src={{url}} style="height: 90px; width: 90px;">
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card> -->
   <ion-card *ngIf="!(!approved && declined || !declined && approved)">
     <ion-grid>
       <ion-row>
@@ -136,6 +103,61 @@
       </ion-button>
     </ion-card>
     <ion-card *ngIf="approved">
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div>
+                Ref number
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                Complaint type
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                Location
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                Reported on
+              </div>
+            </ion-col>
+          </ion-row>
+          <!-- input data -->
+          <ion-row *ngIf="pothole !== undefined">
+            <ion-col>
+              <div>
+                {{pothole.refNumber}}
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                {{pothole.issueType}}
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                {{pothole.location.province}}
+              </div>
+              <div>
+                {{pothole.location.city}}
+              </div>
+              <div>
+                {{pothole.location.manucipality}}
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                {{pothole.date}}
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
       <ion-item class="full">
         <ion-label>Select supplier</ion-label>
         <ion-select [(ngModel)]="selectedSupplier" (cancel)="onCancel()" (ionChange)="onChange()"
