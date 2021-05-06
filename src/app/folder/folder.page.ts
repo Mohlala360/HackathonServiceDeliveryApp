@@ -145,19 +145,21 @@ export class FolderPage implements OnInit {
   cityManucipalitySelected(event: any) {
     console.log('this is the selected manucipality', event.detail.value);
     const cityManucipalityId = event.detail.value;
-    //this.portHole.location.manucipality = this.manucipalities.filter(prov => prov.id == cityManucipalityId)[0]?.name;
   }
 
   getProvinceNamebyId(provinceId: number): string {
-    return this.provinces.filter(province => province.id == provinceId)[0].name;
+    return this.portHole.location.province =
+      this.provinces.filter(province => province.id == provinceId)[0].name;
   }
 
   getManucipalityNamebyId(manucipalityId: number): string {
-    return this.manucipalities.filter(manucipality => manucipality.id == manucipalityId)[0].name;
+    return this.portHole.location.manucipality =
+      this.manucipalities.filter(manucipality => manucipality.id == manucipalityId)[0].name;
   }
 
   getCityNamebyId(cityId: number): string {
-    return this.cities.filter(city => city.id == cityId)[0].name;
+    return this.portHole.location.city =
+      this.cities.filter(city => city.id == cityId)[0].name;
   }
 }
 
