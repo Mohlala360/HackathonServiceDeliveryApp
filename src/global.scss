@@ -58,13 +58,14 @@ ion-menu-button {
   .half {
     float: left;
     width: 50%;
-    border-style: none none none double;
+    border-style: none double none double;
+    height: 100%;
   }
   
   .full {
     float: left;
     width: 100%;
-    border-style: dotted dashed solid double;
+    border-style: none double solid double;
   }
   
   iframe {
@@ -86,5 +87,9 @@ ion-menu-button {
   .text {
     text-align: right;
    size: 10%;
+  }
+
+   .blockHeading {
+    border-style: solid double solid double;
   }
   
